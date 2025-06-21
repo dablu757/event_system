@@ -1,11 +1,12 @@
-{% extends "base.html" %}
+{{% load static %}
+
+    % extends 'base.html' %}
 {% block content %}
-<h2>Upcoming Events</h2>
-<ul>
+    <h2>Upcoming Events</h2>
     {% for event in events %}
-        <li>
-            {{ event.name }} - {{ event.location }}<br>
-            {{ event.start_time }} to {{ event.end_time }}<br>
+        <div>
+            <strong>{{ event.name }}</strong> - {{ event.location }}<br>
+            From {{ event.start_time }} to {{ event.end_time }}<br>
             <form action="{% url 'register' event.id %}" method="post">
                 {% csrf_token %}
                 Name: <input type="text" name="name" required>
@@ -13,8 +14,7 @@
                 <button type="submit">Register</button>
             </form>
             <a href="{% url 'attendee_list' event.id %}">View Attendees</a>
-        </li>
+        </div>
         <hr>
     {% endfor %}
-</ul>
 {% endblock %}

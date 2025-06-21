@@ -8,6 +8,12 @@ from .services import register_attendee
 from django.core.paginator import Paginator
 from django.contrib import messages
 
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'events/home.html')
+
+
 def event_list(request):
     events = Event.objects.filter(start_time__gte=timezone.now()).order_by('start_time')
     return render(request, 'events/event_list.html', {'events': events})
