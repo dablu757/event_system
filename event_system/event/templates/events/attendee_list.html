@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Attendees for {{ event.name }}</h2>
+<ul>
+    {% for attendee in attendees %}
+        <li>{{ attendee.name }} ({{ attendee.email }})</li>
+    {% endfor %}
+</ul>
+
+<div>
+    {% if attendees.has_previous %}
+        <a href="?page={{ attendees.previous_page_number }}">Previous</a>
+    {% endif %}
+    Page {{ attendees.number }} of {{ attendees.paginator.num_pages }}
+    {% if attendees.has_next %}
+        <a href="?page={{ attendees.next_page_number }}">Next</a>
+    {% endif %}
+</div>
+{% endblock %}
